@@ -1,0 +1,42 @@
+# Core dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# Database
+sqlalchemy==2.0.23
+pydantic==2.5.2
+pydantic-settings==2.1.0
+
+# OCR
+pytesseract==0.3.10
+Pillow==10.0.1
+opencv-python==4.8.1.78
+numpy==1.26.1
+easyocr==1.7.1
+
+# NLP
+spacy==3.7.2
+transformers==4.36.2
+torch==2.1.1
+sentence-transformers==2.2.2
+
+# Formulas
+sympy==1.12
+latex2mathml==3.76.0
+
+# Anki
+anki==2.1.65
+
+# File processing
+pdf2image==1.16.3
+python-docx==1.1.0
+PyPDF2==3.0.1
+
+# Utilities
+python-dotenv==1.0.0
+httpx==0.25.1
+aiofiles==23.2.1
+
+# For Windows compatibility
+# pytesseract-windows==0.1.0

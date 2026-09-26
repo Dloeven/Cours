@@ -1,0 +1,21 @@
+# Dockerfile for Frontend
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
+COPY frontend/package.json .
+COPY frontend/package-lock.json .
+RUN npm install
+
+# Copy application code
+COPY frontend/public ./public
+COPY frontend/src ./src
+
+# Build the application
+RUN npm run build
+
+# Serve the application
+EXPOSE 3000
+CMD ["npx", "serve", "-s", "build", "-l", "3000"]

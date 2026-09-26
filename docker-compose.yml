@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: cours-organizer-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./processed:/app/processed
+      - ./cours_organizer.db:/app/cours_organizer.db
+    environment:
+      - DATABASE_URL=sqlite:///./cours_organizer.db
+      - OCR_LANGUAGE=fra+eng
+      - ANKI_HOST=host.docker.internal
+      - ANKI_PORT=8765
+      - DEBUG=false
+    restart: unless-stopped
+    networks:
+      - cours-organizer-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: cours-organizer-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - cours-organizer-network
+
+networks:
+  cours-organizer-network:
+    driver: bridge
+
+volumes:
+  uploads:
+  processed:
